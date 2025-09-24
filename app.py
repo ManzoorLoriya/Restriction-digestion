@@ -32,7 +32,7 @@ def find_restriction_sites(dna_seq):
 # Home route to display the form for DNA input
 @app.route('/')
 def home():
-    return template('WebPython/views/iindex.tpl')  
+    return template('views/iindex.tpl')  
 
 # Route to handle form submission and display results
 @app.route('/results', method="POST")
@@ -40,9 +40,10 @@ def results():
     dna_seq = request.forms.get('dna_seq')
     if dna_seq:
         results, enzymes_not_cutting = find_restriction_sites(dna_seq)
-        return template('WebPython/views/results.tpl', results=results, enzymes_not_cutting=enzymes_not_cutting)
+        return template('views/results.tpl', results=results, enzymes_not_cutting=enzymes_not_cutting)
     return "Please provide a valid DNA sequence."
 
 # To run the Bottle app
 if __name__ == "__main__":
     app.run(host='localhost', port=8080, debug=True)
+
